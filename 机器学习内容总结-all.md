@@ -8,8 +8,6 @@
   >
   > 更多内容参考：https://www.jianshu.com/p/91365f343585
 
-- 决策树相关算法介绍
-  - https://blog.csdn.net/qingqing7/article/details/78416708
 - 完成任务回顾
   - 将 任务 分3块
     1. 需求，目标
