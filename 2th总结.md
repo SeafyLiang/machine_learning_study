@@ -189,45 +189,61 @@
    data_scaled = pd.DataFrame(scaler.fit_transform(data), columns=data.columns, index=data.index)
    ```
 
+   > 独热编码get_dummies()
+   >
+   > - one-hot encoding
+   >
+   > ​    one-hot的基本思想：将离散型特征的每一种取值都看成一种状态，若你的这一特征中有N个不相同的取值，那么我们就可以将该特征抽象成N种不同的状态，one-hot编码保证了每一个取值只会使得一种状态处于“激活态”，也就是说这N种状态中只有一个状态位值为1，其他状态位都是0。
+   >
+   > [独热编码官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.get_dummies.html)
+
+   ```python
+   # 使用独热编码 将object分类数据转换成float数值类型
+   df_encoded = pd.get_dummies(df)
+   X = df_encoded
+   ```
+
+   
+
 5. 建模、预测和评价
 
-   > knn建模和训练
+> knn建模和训练
 
-   ```python
-   # knn建模、训练、预测和评价
-   fivenn = KNeighborsClassifier(n_neighbors=5)
-   fivenn.fit(X_train, y_train)
-   pred = fivenn.predict(X_test)
-   
-   default_acc = metrics.accuracy_score(y_test, pred)
-   
-   print("Accuracy for model k=5:", default_acc)
-   ```
+```python
+# knn建模、训练、预测和评价
+fivenn = KNeighborsClassifier(n_neighbors=5)
+fivenn.fit(X_train, y_train)
+pred = fivenn.predict(X_test)
 
-   > 评价与K值调优
+default_acc = metrics.accuracy_score(y_test, pred)
 
-   ```python
-   # 将k值做变量，循环输出准确度
-   accuracy = []
-   
-   # Calculating error for K values between 1 and 60
-   for i in range(1, 60):
-       knn = KNeighborsClassifier(n_neighbors=i)
-       knn.fit(X_train, y_train)
-       pred_i = knn.predict(X_test)
-       accuracy.append(metrics.accuracy_score(y_test, pred_i))
-   
-   
-   # 可视化
-   plt.figure(figsize=(20, 6))
-   plt.plot(range(1, 60), accuracy, color='red', marker='o',
-            markersize=10)
-   plt.title('Accuracy Vs K Value')
-   plt.xlabel('K Value')
-   plt.ylabel('Accuracy')
-   ```
+print("Accuracy for model k=5:", default_acc)
+```
 
-   <img src="/Users/seafyliang/Library/Application Support/typora-user-images/image-20201210163135040.png" alt="image-20201210163135040" style="zoom:50%;" />
+> 评价与K值调优
+
+```python
+# 将k值做变量，循环输出准确度
+accuracy = []
+
+# Calculating error for K values between 1 and 60
+for i in range(1, 60):
+    knn = KNeighborsClassifier(n_neighbors=i)
+    knn.fit(X_train, y_train)
+    pred_i = knn.predict(X_test)
+    accuracy.append(metrics.accuracy_score(y_test, pred_i))
+
+
+# 可视化
+plt.figure(figsize=(20, 6))
+plt.plot(range(1, 60), accuracy, color='red', marker='o',
+         markersize=10)
+plt.title('Accuracy Vs K Value')
+plt.xlabel('K Value')
+plt.ylabel('Accuracy')
+```
+
+<img src="/Users/seafyliang/Library/Application Support/typora-user-images/image-20201210163135040.png" alt="image-20201210163135040" style="zoom:50%;" />
 
 ### 2、任务：对气缸带数据集用knn训练并预测
 

@@ -67,3 +67,9 @@ https://blog.csdn.net/qq_44198436/article/details/104713891
 **docker打包python程序**：
 
 https://blog.csdn.net/u011285477/article/details/103914947
+
+
+
+**数据分析 常见异常及解决办法(一):**
+
+https://blog.csdn.net/CUFEECR/article/details/108221323
