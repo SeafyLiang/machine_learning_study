@@ -29,6 +29,24 @@ print(classification_report(y_pred=pred, y_true=y_test))
 
 ## Lab07 - 线性回归和逻辑回归
 
+### 独热编码
+
+> 独热编码get_dummies()
+>
+> - one-hot encoding
+>
+> ​    one-hot的基本思想：将离散型特征的每一种取值都看成一种状态，若你的这一特征中有N个不相同的取值，那么我们就可以将该特征抽象成N种不同的状态，one-hot编码保证了每一个取值只会使得一种状态处于“激活态”，也就是说这N种状态中只有一个状态位值为1，其他状态位都是0。
+>
+> [独热编码官方文档](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.get_dummies.html)
+
+```python
+# 使用独热编码 将object分类数据转换成float数值类型
+df_encoded = pd.get_dummies(df)
+X = df_encoded
+```
+
+
+
 ### 1、线性回归
 
 - 训练数据要求：数值特征
