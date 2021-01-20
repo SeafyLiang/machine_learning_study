@@ -10,3 +10,4 @@ machine_learning_study
 
 ![image-20210115134107389](https://i.loli.net/2021/01/15/ukaexsTS98W2OVE.png)
 
+![image-20210120090827322](https://i.loli.net/2021/01/20/9D4MwTPGUN6n8ly.png)
