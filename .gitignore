@@ -1,0 +1,11 @@
+.idea/.gitignore
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/机器学习内容总结.iml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/inspectionProfiles/Project_Default.xml
+systematic_study/.ipynb_checkpoints/03LogisticRegression&classification-checkpoint.ipynb
+systematic_study/.ipynb_checkpoints/04SVM-checkpoint.ipynb
+systematic_study/.ipynb_checkpoints/05DecisionTree&RandomForest-checkpoint.ipynb
+systematic_study/.ipynb_checkpoints/06K-Means-checkpoint.ipynb
