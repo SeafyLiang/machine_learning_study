@@ -3,15 +3,8 @@
 # @Date : 2021/4/17 23:21
 # @Description : 线性回归
 
-
-# In[1]:
-
-
 from numpy import *
 import matplotlib.pylab as plt
-
-
-# In[2]:
 
 
 def loadDataSet(fileName):
@@ -28,9 +21,6 @@ def loadDataSet(fileName):
     return dataMat,labelMat
 
 
-# In[3]:
-
-
 def standRegres(xArr,yArr):
     xMat = mat(xArr)
     yMat = mat(yArr).T
@@ -39,9 +29,6 @@ def standRegres(xArr,yArr):
         return
     ws = xTx.I * (xMat.T * yMat)
     return ws
-
-
-# In[4]:
 
 
 def regression1():
@@ -59,14 +46,9 @@ def regression1():
     plt.show()
 
 
-# In[5]:
-
-
 if __name__ == "__main__":
     regression1()
 
-
-# In[ ]:
 
 
 
