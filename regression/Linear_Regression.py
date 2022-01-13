@@ -9,7 +9,7 @@
 # 基于波士顿数据集实现线性回归demo
 from sklearn.linear_model import LinearRegression
 from sklearn.datasets import load_boston
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, median_absolute_error, explained_variance_score, r2_score
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -67,16 +67,23 @@ plt.plot(range(y_pred_2.shape[0]), y_pred_2, color='red', linewidth=1.5, linesty
 plt.legend(['act', 'pred'])
 plt.show()
 
-# mse：均方误差
-print("Mean squared error:", mean_squared_error(y_pred=y_pred_2, y_true=y_test))
+
 
 # 模型训练的系数
 print(lr_2_clf.coef_)  # 获取系数a, b
 print(lr_2_clf.intercept_)  # 获取常数项c
 
 # 线性回归模型评估
-import statsmodels.api as sm
 
+# 1、均方误差、平均绝对误差、中位数绝对误差、解释方差分、r2
+print("mean_squared_error:", mean_squared_error(y_pred=y_pred_2, y_true=y_test))
+print("mean_absolute_percentage_error:", mean_absolute_percentage_error(y_pred=y_pred_2, y_true=y_test))
+print("median_absolute_error:", median_absolute_error(y_pred=y_pred_2, y_true=y_test))
+print("explained_variance_score:", explained_variance_score(y_pred=y_pred_2, y_true=y_test))
+print("r2_score:", r2_score(y_pred=y_pred_2, y_true=y_test))
+
+# 2、OLS回归分析报告
+import statsmodels.api as sm
 # 将特征变量x_test添加常数项，赋值给x2
 x2 = sm.add_constant(x_test)
 # 对y_test和x2，用OLS()最小二乘法，进行线性回归方程搭建
@@ -87,15 +94,11 @@ print(est.summary())
 # Adj. R-squared是R-squared的改进版。
 # p值小于0.05，认为与目标变量有显著相关性。
 
-# 假设检验p值
+# 3、假设检验p值
 from scipy import stats
 
 rvs1 = stats.norm.rvs(loc=5, scale=10, size=500)
 rvs2 = stats.norm.rvs(loc=5, scale=10, size=500)
 print(stats.ttest_ind(rvs1, rvs2))
 
-# R-squared另一种获取方法
-from sklearn.metrics import r2_score
 
-r2 = r2_score(y_test, y_pred)
-print('r2_score:', r2)  # 拟合程度，（非过拟合状态下）越接近1越好
