@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=SimHei] ;
+edge [fontname=SimHei] ;
+0 [label="满意度 <= 4.65\ngini = 0.365\nsamples = 12000\nvalue = [9120, 2880]\nclass = 不离职", fillcolor="#eda978"] ;
+1 [label="工程数量 <= 2.5\ngini = 0.477\nsamples = 3367\nvalue = [1325, 2042]\nclass = 离职", fillcolor="#b9ddf6"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="考核得分 <= 0.575\ngini = 0.208\nsamples = 1396\nvalue = [165, 1231]\nclass = 离职", fillcolor="#54aae8"] ;
+1 -> 2 ;
+3 [label="gini = 0.102\nsamples = 1295\nvalue = [70, 1225]\nclass = 离职", fillcolor="#44a3e6"] ;
+2 -> 3 ;
+4 [label="gini = 0.112\nsamples = 101\nvalue = [95, 6]\nclass = 不离职", fillcolor="#e78946"] ;
+2 -> 4 ;
+5 [label="满意度 <= 1.15\ngini = 0.484\nsamples = 1971\nvalue = [1160, 811]\nclass = 不离职", fillcolor="#f7d9c3"] ;
+1 -> 5 ;
+6 [label="gini = 0.0\nsamples = 714\nvalue = [0, 714]\nclass = 离职", fillcolor="#399de5"] ;
+5 -> 6 ;
+7 [label="gini = 0.142\nsamples = 1257\nvalue = [1160, 97]\nclass = 不离职", fillcolor="#e78c4a"] ;
+5 -> 7 ;
+8 [label="工龄 <= 4.5\ngini = 0.175\nsamples = 8633\nvalue = [7795, 838]\nclass = 不离职", fillcolor="#e88f4e"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="月工时 <= 290.5\ngini = 0.031\nsamples = 7064\nvalue = [6952, 112]\nclass = 不离职", fillcolor="#e5833c"] ;
+8 -> 9 ;
+10 [label="gini = 0.029\nsamples = 7056\nvalue = [6952, 104]\nclass = 不离职", fillcolor="#e5833c"] ;
+9 -> 10 ;
+11 [label="gini = 0.0\nsamples = 8\nvalue = [0, 8]\nclass = 离职", fillcolor="#399de5"] ;
+9 -> 11 ;
+12 [label="考核得分 <= 0.805\ngini = 0.497\nsamples = 1569\nvalue = [843, 726]\nclass = 不离职", fillcolor="#fbeee4"] ;
+8 -> 12 ;
+13 [label="gini = 0.087\nsamples = 590\nvalue = [563, 27]\nclass = 不离职", fillcolor="#e68742"] ;
+12 -> 13 ;
+14 [label="gini = 0.408\nsamples = 979\nvalue = [280, 699]\nclass = 离职", fillcolor="#88c4ef"] ;
+12 -> 14 ;
+}
