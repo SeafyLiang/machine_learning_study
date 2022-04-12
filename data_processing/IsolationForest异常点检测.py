@@ -75,44 +75,104 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.ensemble import IsolationForest
+import plotly.express as px
+from sklearn.datasets import load_iris
+from sklearn.ensemble import IsolationForest
 
-# 构造一个数据集，只包含一列数据，假如都是月薪数据，有些可能是错的
-df = pd.DataFrame({'salary': [4, 1, 4, 5, 3, 6, 2, 5, 6, 2, 5, 7, 1, 8, 12, 33, 4, 7, 6, 7, 8, 55]})
 
-# 构建模型 ,n_estimators=100 ,构建100颗树
-model = IsolationForest(n_estimators=100,
-                        max_samples='auto',
-                        contamination=float(0.1),
-                        max_features=1.0)
-# 训练模型
-model.fit(df[['salary']])
+def created_data_od():
+    '''
+    构造的一维数据做异常点检测
+    '''
+    # 构造一个数据集，只包含一列数据，假如都是月薪数据，有些可能是错的
+    df = pd.DataFrame({'salary': [4, 1, 4, 5, 3, 6, 2, 5, 6, 2, 5, 7, 1, 8, 12, 33, 4, 7, 6, 7, 8, 55]})
 
-# 预测 decision_function 可以得出 异常评分
-df['scores'] = model.decision_function(df[['salary']])
+    # 构建模型 ,n_estimators=100 ,构建100颗树
+    model = IsolationForest(n_estimators=100,
+                            max_samples='auto',
+                            contamination=float(0.1),
+                            max_features=1.0)
+    # 训练模型
+    model.fit(df[['salary']])
 
-#  predict() 函数 可以得到模型是否异常的判断，-1为异常，1为正常
-df['anomaly'] = model.predict(df[['salary']])
-print(df)
-#     salary    scores  anomaly
-# 0        4  0.200080        1
-# 1        1  0.101944        1
-# 2        4  0.200080        1
-# 3        5  0.216688        1
-# 4        3  0.138629        1
-# 5        6  0.228297        1
-# 6        2  0.146017        1
-# 7        5  0.216688        1
-# 8        6  0.228297        1
-# 9        2  0.146017        1
-# 10       5  0.216688        1
-# 11       7  0.216047        1
-# 12       1  0.101944        1
-# 13       8  0.160711        1
-# 14      12 -0.011327       -1
-# 15      33 -0.121899       -1
-# 16       4  0.200080        1
-# 17       7  0.216047        1
-# 18       6  0.228297        1
-# 19       7  0.216047        1
-# 20       8  0.160711        1
-# 21      55 -0.199137       -1
+    # 预测 decision_function 可以得出 异常评分
+    df['scores'] = model.decision_function(df[['salary']])
+
+    #  predict() 函数 可以得到模型是否异常的判断，-1为异常，1为正常
+    df['anomaly'] = model.predict(df[['salary']])
+    print(df)
+    #     salary    scores  anomaly
+    # 0        4  0.200080        1
+    # 1        1  0.101944        1
+    # 2        4  0.200080        1
+    # 3        5  0.216688        1
+    # 4        3  0.138629        1
+    # 5        6  0.228297        1
+    # 6        2  0.146017        1
+    # 7        5  0.216688        1
+    # 8        6  0.228297        1
+    # 9        2  0.146017        1
+    # 10       5  0.216688        1
+    # 11       7  0.216047        1
+    # 12       1  0.101944        1
+    # 13       8  0.160711        1
+    # 14      12 -0.011327       -1
+    # 15      33 -0.121899       -1
+    # 16       4  0.200080        1
+    # 17       7  0.216047        1
+    # 18       6  0.228297        1
+    # 19       7  0.216047        1
+    # 20       8  0.160711        1
+    # 21      55 -0.199137       -1
+
+
+def iris_data_od():
+    '''
+    内置的iris 数据集作为案例
+    '''
+    data = load_iris(as_frame=True)
+    X, y = data.data, data.target
+    df = data.frame
+    print(df.head())
+    # 模型训练
+    iforest = IsolationForest(n_estimators=100, max_samples='auto',
+                              contamination=0.05, max_features=4,
+                              bootstrap=False, n_jobs=-1, random_state=1)
+
+    #  fit_predict 函数 训练和预测一起 可以得到模型是否异常的判断，-1为异常，1为正常
+    df['label'] = iforest.fit_predict(X)
+
+    # 预测 decision_function 可以得出 异常评分
+    df['scores'] = iforest.decision_function(X)
+
+    print(df)
+    #      sepal length (cm)  sepal width (cm)  ...  label    scores
+    # 0                  5.1               3.5  ...      1  0.177972
+    # 1                  4.9               3.0  ...      1  0.148945
+    # 2                  4.7               3.2  ...      1  0.129540
+    # 3                  4.6               3.1  ...      1  0.119440
+    # 4                  5.0               3.6  ...      1  0.169537
+    # ..                 ...               ...  ...    ...       ...
+    # 145                6.7               3.0  ...      1  0.131967
+    # 146                6.3               2.5  ...      1  0.122848
+    # 147                6.5               3.0  ...      1  0.160523
+    # 148                6.2               3.4  ...      1  0.073536
+    # 149                5.9               3.0  ...      1  0.169074
+    # 看看哪些预测为异常的
+    print(df[df.label == -1])
+    #      sepal length (cm)  sepal width (cm)  ...  label    scores
+    # 13                 4.3               3.0  ...     -1 -0.039104
+    # 15                 5.7               4.4  ...     -1 -0.003895
+    # 41                 4.5               2.3  ...     -1 -0.038639
+    # 60                 5.0               2.0  ...     -1 -0.008813
+    # 109                7.2               3.6  ...     -1 -0.037663
+    # 117                7.7               3.8  ...     -1 -0.046873
+    # 118                7.7               2.6  ...     -1 -0.055233
+    # 131                7.9               3.8  ...     -1 -0.064742
+    #
+    # [8 rows x 7 columns]
+
+
+if __name__ == '__main__':
+    created_data_od()
+    iris_data_od()
