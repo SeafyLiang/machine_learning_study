@@ -9,12 +9,20 @@
 
 | 模块               | 内容             |
 | ------------------ | ---------------- |
+| data_processing    | 数据处理         |
+| regression         | 回归问题         |
+| nlp_study          | 自然语言处理问题 |
+| time_series        | 时间序列问题     |
+| xgboost_lightgbm   | xgb&lgb          |
+| random_forest      | 随机森林         |
 | Classification     | 分类问题         |
-| Cluster            | 聚类问题         |
-| DimensionReduction | 降维问题         |
-| HPO                | 超参数优化       |
-| Nlp_study          | 自然语言处理问题 |
 | practical_project  | 实践项目         |
-| Regression         | 回归问题         |
-| Systematic_study   | 系统性学习内容   |
+| neural_network     | 神经网络         |
+| cluster            | 聚类问题         |
+| aprior             | aprior关联分析   |
+| adaboost_gbdt      | adaboost&gbdt    |
+| systematic_study   | 系统性学习内容   |
+| HPO                | 超参数优化       |
+| dimensionReduction | 降维问题         |
+|                    |                  |
 
